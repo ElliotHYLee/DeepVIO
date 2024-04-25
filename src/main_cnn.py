@@ -7,7 +7,6 @@ import numpy as np
 import time
 from src.Params import *
 
-
 def train(dsName, subType, seq):
     wName = 'Weights/' + branchName() + '_' + dsName + '_' + subType
     dm = VODataSetManager_CNN(dsName=dsName, subType=subType, seq=seq, isTrain=True, split=0.2)

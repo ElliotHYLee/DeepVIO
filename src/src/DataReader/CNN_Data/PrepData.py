@@ -1,6 +1,5 @@
 from src.DataReader.CNN_Data.ReadData_CNN import *
 import time
-
 from src.Params import branchName
 ##############################################################################################
 ## Rule of thumb: don't call any other function to reduce lines of code with the img data in np.
