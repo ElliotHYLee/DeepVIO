@@ -62,7 +62,7 @@ if __name__ == '__main__':
     dataSet = dm.testSet
     trainLoader = DataLoader(dataset = dataSet, batch_size=64)
     sum = 0
-    for batch_idx, (img0, img1, du, dw, dtrans) in enumerate(trainLoader):
+    for batch_idx, (img0, img1, du, dw, dw_gyro, gyro_standard, dtrans, dtr_gnd, rotM_bdy2gnd) in enumerate(trainLoader):
         img0 = img0.data.numpy()
         img1 = img1.data.numpy()
         sum += img0.shape[0]
@@ -76,4 +76,6 @@ if __name__ == '__main__':
             cv2.imshow('img0', img_t0)
             cv2.imshow('img1', img_t1)
             cv2.imshow('imgcon', imgcon)
-            cv2.waitKey(1)
+            key = cv2.waitKey(1) & 0xFF  # Use mask for compatibility with 64-bit machines
+            if key == ord('q'):  # Check if 'q' was pressed
+                break

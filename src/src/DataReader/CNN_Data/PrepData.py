@@ -14,7 +14,7 @@ class Singleton:
 
 class DataManager(Singleton):
 
-    def initHelper(self, dsName='airsim', subType='mr', seq=[1, 3, 5]):
+    def initHelper(self, dsName='kitti', subType='mr', seq=[1, 3, 5]):
         self.dsName = dsName
         self.numChannel = 3 if self.dsName is not 'euroc' else 1
         self.subType = subType
@@ -95,13 +95,14 @@ class DataManager(Singleton):
 if __name__ == '__main__':
     s = time.time()
     m = DataManager()
-    m.initHelper(dsName='airsim', subType='mr', seq=[0])
-    print('wait 3 secs')
-    time.sleep(3)
-    m2 = DataManager()
-    print(time.time() - s)
-    for i in range(0, m2.numTotalImgData):
-        img = m2.imgs[i, :]
-        img = np.reshape(img, (360, 720, m2.numChannel))
-        cv2.imshow('asdf', img)
-        cv2.waitKey(1)
+    m.initHelper(dsName='kitti', subType='mr', seq=[0])
+    
+    for i in range(0, m.numTotalImgData):
+        img = m.imgs[i, :]
+        img = np.reshape(img, (360, 720, m.numChannel))
+        cv2.imshow('check', img)
+        # print(img)
+        key = cv2.waitKey(1) & 0xFF  # Use mask for compatibility with 64-bit machines
+        if key == ord('q'):  # Check if 'q' was pressed
+            break
+  

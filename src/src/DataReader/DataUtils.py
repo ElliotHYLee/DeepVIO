@@ -1,57 +1,35 @@
 from src.Params import *
 import pandas as pd
 from sys import platform
+import os
 
-def getPath(dsName='Airsim', seq=0, subType='mr'):
-    if platform == "linux" or platform == "linux2":
-        return getPathAWS(dsName, seq, subType)
-    elif platform == "win32":
-        return getPathWin(dsName, seq, subType)
-
-def getPathAWS(dsName = 'AirSim', seq = 0, subType='mr'):
-    path = None
-    dsName = dsName.lower()
-    if dsName == 'kitti':
-        path = getKITTIPath_AWS()
-        path += '0'+str(seq) if seq<10 else str(seq)
-        path += '/'
-    return path
-
-def getPrPath(dsName, seq, subType):
-    resName = 'Results/Data/' + refBranchName() + '_' + dsName + '_'
-    path = resName + subType + str(seq) #if dsName == 'airsim' else resName + str(seq)
-    return path
-
-def getPathWin(dsName = 'kitti', seq = 0, subType='mr'):
-    path = None
-    dsName = dsName.lower()
+def getPath(dsName='kitti', seq=0, subType='mr'):
     if dsName == 'kitti':
         path = getKITTIPath()
         path += '0'+str(seq) if seq<10 else str(seq)
         path += '/'
     return path
 
+
+def getPrPath(dsName, seq, subType):
+    resName = 'Results/Data/' + refBranchName() + '_' + dsName + '_'
+    path = resName + subType + str(seq) #if dsName == 'airsim' else resName + str(seq)
+    return path
+
+
 def getImgNames(path, dsName='kitti', ts=None, subType=''):
     dsName = dsName.lower()
     imgNames = []
-    if dsName =='kitti':
-        import os
-        temp = []
-        print(path)
-        files = os.listdir(path + '/image_0/')
-        for i in range (0, len(files)):
-            f = files[i]
-            x = f.split('.')[0]
-            temp.append(int(x))
-        sortedIdx = sorted(range(len(temp)), key=lambda k: temp[k])
-        imgNames = [files[i] for i in sortedIdx]
-
-        if subType == 'none':
-            for i in range(0, len(imgNames)):
-                imgNames[i] = path + 'image_2/' + imgNames[i]
-        elif subType == 'edge':
-            for i in range(0, len(imgNames)):
-                imgNames[i] = path + 'edge/' + imgNames[i]
+    temp = []
+    img_dir_path = path + 'image_0/'
+    files = os.listdir(img_dir_path)
+    
+    for i in range (0, len(files)):
+        f = files[i]
+        x = f.split('.')[0]
+        temp.append(int(x))
+    sortedIdx = sorted(range(len(temp)), key=lambda k: temp[k])
+    imgNames = [img_dir_path + files[i] for i in sortedIdx]
     return imgNames
 
 def getEnd(start, N, totalN):

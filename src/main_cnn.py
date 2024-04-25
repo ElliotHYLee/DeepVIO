@@ -55,7 +55,7 @@ if __name__ == '__main__':
     seq = [0]
     seqRange = [0, 3]
 
-    runTrainTest('kitti', 'none', seq=[0, 4], seqRange=[0, 11])
+    runTrainTest('kitti', 'none', seq=[0, 2, 4], seqRange=[0, 1])
 
 
 # %%

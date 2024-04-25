@@ -1,8 +1,8 @@
 def getKITTIPath():
-    return '/workspace/KITTI/odom/dataset/sequences/'
+    return '/workspace/datasets/KITTI/odom/dataset/sequences/'
 
 def getKITTIPath_AWS():
-    return '/workspace/KITTI/odom/dataset/sequences/'
+    return '/workspace/datasets/KITTI/odom/dataset/sequences/'
 
 def branchName():
     return 'docker'
