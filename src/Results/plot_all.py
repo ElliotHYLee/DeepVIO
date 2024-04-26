@@ -7,7 +7,7 @@ from Results.read_gt_pr_data import PredictionData, GroundTruthData
 from Results.plot_basic_data import plot_basic
 
 
-seq = 7
+seq = 5
 pred_data = PredictionData(seq)
 gt_data = GroundTruthData(seq)
 

@@ -13,4 +13,4 @@ RUN mkdir -p /workspace/datasets/
 RUN mkdir -p /workspace/dvio/
 WORKDIR /workspace/dvio/
 RUN apt install -y tree build-essential
-RUN export PYTHONPATH="/workspace/dvio:$PYTHONPATH" >> ~/.bashrc
+RUN export PYTHONPATH="/workspace/dvio$PYTHONPATH" >> ~/.bashrc

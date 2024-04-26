@@ -52,19 +52,36 @@ Hongyun Lee, James W. Gregory, Matthew McCrink, and Alper Yilmaz. "Deep Learning
    - Docker by Microsfot
    - Remote Development by Microsoft
 
-## Usage:
+## Qucik View: Results
+To quickly view the results, you do not need to run any model. The result data is provided in ~/src/src/Results/. To plot the result data, you can simply use:
+
+
+```bash
+# @ In the docker container,
+export PYTHONPATH="/workspace/dvio$PYTHONPATH" >> ~/.bashrc
+```
+
+```bash
+# @ src/Results in the docker container,
+python plot_all.py
+```
+
+### For CNN_KF result
+You'd still need to run the model. See Step 8 in the "Training and Testing Usage:" section.
+
+## Training and Testing Usage:
    
 1. Clone this repo.
-    ```
+    ```bash
     git clone https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry --recursive
     ```
 2. A folder structure for KITTI dataset is provided. Fill in the actual data (images) accordingly. Or, provide custom bind mount path. To investigate the folder structure, see ~/datasets/KITTI/odom/sequences/00/image_0/
 3. Build docker image
-   ```
+   ```bash
     docker compose build
    ```
 4. Run docker container
-   ```
+   ```bash
     docker compose up -d
    ```
 5. Using the VSCode extensions, attach the VSCode for the created container.
@@ -75,17 +92,17 @@ Hongyun Lee, James W. Gregory, Matthew McCrink, and Alper Yilmaz. "Deep Learning
 Make sure to turn on/off the training @ main_cnn.py. To run training, set TestOnly=False. Default is true. This will trian and generate weights if you don't have one.
 
    
-   ```
+   ```bash
    # main_cnn.py
    runTrainTest('kitti', 'none', seq=[0, 2, 4], seqRange=[0, 11], TestOnly=False) 
    ```
 
-   ```
+   ```bash
    python main_cnn.py
    ```
 
 8. Testing CNN-KF output   
-   ```
+   ```bash
    python main_kf.py
    ```
 
