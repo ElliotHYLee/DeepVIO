@@ -7,7 +7,7 @@ class ReadData_KF(ReadData):
     def __init__(self, dsName='airsim', subType='mr', seq=0):
         super().__init__(dsName, subType, seq)
 
-        self.gt_acc_gnd = pd.read_csv(self.path + 'gt_acc_gnd.txt', sep=',', header=None).values.astype(np.float32)
+        self.gt_acc_gnd = pd.read_csv(self.path + 'acc_gnd.txt', sep=',', header=None).values.astype(np.float32)
         self.accdt_gnd = np.multiply(self.acc_gnd, self.dt)
         self.gt_accdt_gnd = np.multiply(self.gt_acc_gnd, self.dt)
 

@@ -10,7 +10,7 @@ from src.Params import getNoiseLevel
 
 dsName, subType, seq = 'kitti', 'none', [0, 2, 7, 10]
 
-isTrain = True
+isTrain = False
 wName = 'Weights/' + branchName() + '_' + dsName + '_' + subType + '_KF'
 
 def preClamp(data):
@@ -36,34 +36,45 @@ def filtfilt(data):
         y[:, i] = signal.filtfilt(b, a, data[:, i], padlen=100)
     return y
 
-def plotter(filt, gt):
+def plotter(filt, gt, mSignal):
 
     plt.figure()
     plt.subplot(311)
+    plt.title("Vel GT vs Vel Filt")
     plt.plot(gt[:, 0], 'r.')
-    plt.plot(filt[:, 0], 'b.')
+    plt.plot(mSignal[:, 0], 'b.', markersize=0.5)   
+    plt.plot(filt[:, 0], 'g.', markersize=0.8)
     plt.subplot(312)
     plt.plot(gt[:, 1], 'r')
-    plt.plot(filt[:, 1], 'b.')
+    plt.plot(mSignal[:, 1], 'b.', markersize=0.5)
+    plt.plot(filt[:, 1], 'g.', markersize=0.8)
     plt.subplot(313)
     plt.plot(gt[:, 2], 'r')
-    plt.plot(filt[:, 2], 'b.')
+    plt.plot(mSignal[:, 2], 'b.', markersize=0.5)
+    plt.plot(filt[:, 2], 'g.', markersize=0.8)
 
     posFilt = integrate(filt)
     posGT = integrate(gt)
+    posMeas = integrate(mSignal)
     plt.figure()
+    plt.suptitle("Pose GT vs Pose Filt XYZ")
     plt.subplot(311)
     plt.plot(posGT[:, 0], 'r')
+    plt.plot(posMeas[:, 0], 'b')
     plt.plot(posFilt[:, 0], 'g')
     plt.subplot(312)
     plt.plot(posGT[:, 1], 'r')
+    plt.plot(posMeas[:, 1], 'b')
     plt.plot(posFilt[:, 1], 'g')
     plt.subplot(313)
     plt.plot(posGT[:, 2], 'r')
+    plt.plot(posMeas[:, 2], 'b')
     plt.plot(posFilt[:, 2], 'g')
 
     plt.figure()
+    plt.title("Pose GT vs Pose Filt 2D")
     plt.plot(posGT[:, 0], posGT[:, 2], 'r')
+    plt.plot(posMeas[:, 0], posMeas[:, 2], 'b')
     plt.plot(posFilt[:, 0], posFilt[:, 2], 'g')
 
     return posFilt, posGT
@@ -103,9 +114,10 @@ def main():
     rmser = GetRMSE()
     optimizer = optim.RMSprop(gnet.parameters(), lr=10 ** -4)
 
-    fig = plt.gcf()
-    fig.show()
-    fig.canvas.draw()
+    if isTrain:
+        fig = plt.gcf()
+        fig.show()
+        fig.canvas.draw()
 
     iterN = 50 if isTrain else 1
     for epoch in range(0, iterN):
@@ -161,7 +173,7 @@ def main():
             gtSignal, dt, pSignal, mSignal, mCov = prepData(seqLocal=[ii])
             kfNumpy.setR(params, paramsSign)
             kfRes = kfNumpy.runKF(dt, pSignal, mSignal, mCov)
-            posFilt, posGT = plotter(kfRes, gtSignal)
+            posFilt, posGT = plotter(kfRes, gtSignal, mSignal)
             np.savetxt('Results/Data/posFilt' + str(ii) + '_' + str(noise) + '.txt', posFilt)
             np.savetxt('Results/Data/posGT' + str(ii) + '_' + str(noise) +  '.txt', posGT)
 

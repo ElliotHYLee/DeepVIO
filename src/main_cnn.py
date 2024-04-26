@@ -39,7 +39,7 @@ def test(dsName, subType, seqRange):
         np.savetxt(commName + '_dtr_gnd' + str(noise) + '.txt', pr_dtr_gnd)
 
 def runTrainTest(dsName, subType, seq, seqRange):
-    runTrain(dsName, subType, seq)
+    # runTrain(dsName, subType, seq)
     runTest(dsName, subType, seqRange)
 
 def runTrain(dsName, subType, seq):
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     seq = [0]
     seqRange = [0, 3]
 
-    runTrainTest('kitti', 'none', seq=[0, 2, 4], seqRange=[0, 1])
+    runTrainTest('kitti', 'none', seq=[0, 2, 4], seqRange=[0, 11])
 
 
 # %%
