@@ -1,5 +1,3 @@
-# %%
-
 from src.DataReader.CNN_Data.VODataSet import VODataSetManager_CNN
 from src.Models.CNN_Model.Model_CNN_0 import Model_CNN_0
 from src.Models.CNN_Model.CNN_ModelContainer import CNN_ModelContainer
@@ -38,8 +36,9 @@ def test(dsName, subType, seqRange):
         np.savetxt(commName + '_dtr_cov' + str(noise) + '.txt', dtr_cov)
         np.savetxt(commName + '_dtr_gnd' + str(noise) + '.txt', pr_dtr_gnd)
 
-def runTrainTest(dsName, subType, seq, seqRange):
-    # runTrain(dsName, subType, seq)
+def runTrainTest(dsName, subType, seq, seqRange, TestOnly=True):
+    if not TestOnly:
+        runTrain(dsName, subType, seq)
     runTest(dsName, subType, seqRange)
 
 def runTrain(dsName, subType, seq):
@@ -51,11 +50,5 @@ def runTest(dsName, subType, seqRange):
     test(dsName, subType, seqRange)
 
 if __name__ == '__main__':
-    dsName = 'airsim'
-    seq = [0]
-    seqRange = [0, 3]
+    runTrainTest('kitti', 'none', seq=[0, 2, 4], seqRange=[0, 11], TestOnly=True)
 
-    runTrainTest('kitti', 'none', seq=[0, 2, 4], seqRange=[0, 11])
-
-
-# %%

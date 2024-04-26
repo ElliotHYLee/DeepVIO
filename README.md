@@ -59,6 +59,26 @@ Hongyun Lee, James W. Gregory, Matthew McCrink, and Alper Yilmaz. "Deep Learning
    ```
 5. Using the VSCode extensions, attach the VSCode for the created container.
 
+6. Put the sample weight uner the src/Weights. Sample weight link: https://drive.google.com/file/d/1DZL-MtMenJb23uQdjwQ_XuyonehuoovE/view?usp=drive_link
+
+7. Training & Testing
+Make sure to turn on/off the training @ main_cnn.py. To run training, set TestOnly=False. Default is true. This will trian and generate weights if you don't have one.
+
+   
+   ```
+   # main_cnn.py
+   runTrainTest('kitti', 'none', seq=[0, 2, 4], seqRange=[0, 11], TestOnly=False) 
+   ```
+
+   ```
+   python main_cnn.py
+   ```
+
+8. Testing CNN-KF output   
+   ```
+   python main_kf.py
+   ```
+
 
 
 

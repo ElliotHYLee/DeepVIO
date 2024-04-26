@@ -2,7 +2,8 @@ FROM pytorch/pytorch:1.6.0-cuda10.1-cudnn7-devel
 RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub
 RUN apt update && apt install -y libsm6 libxext6 libxrender-dev libgl1-mesa-glx libglib2.0-0
 RUN python -m pip install jupyter
-RUN pip install numpy scipy pandas matplotlib scikit-learn pathlib opencv-python opencv-contrib-python 
+COPY ./requirements.txt /workspace/requirements.txt
+RUN pip install -r /workspace/requirements.txt
 
 
 RUN jupyter notebook --generate-config

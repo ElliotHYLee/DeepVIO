@@ -7,7 +7,6 @@ import torch.optim as optim
 import matplotlib.pyplot as plt
 from src.Params import getNoiseLevel
 
-
 dsName, subType, seq = 'kitti', 'none', [0, 2, 7, 10]
 
 isTrain = False
