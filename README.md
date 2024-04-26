@@ -53,7 +53,7 @@ Hongyun Lee, James W. Gregory, Matthew McCrink, and Alper Yilmaz. "Deep Learning
    - Remote Development by Microsoft
 
 ## Qucik View: Results
-To quickly view the results, you do not need to run any model. The result data is provided in ~/src/src/Results/. To plot the result data, you can simply use:
+To quickly view the results, you do not need to run any model. The result data is provided in ~/src/src/Results/. To plot the result data, you can simply run:
 
 
 ```bash
@@ -105,9 +105,6 @@ Make sure to turn on/off the training @ main_cnn.py. To run training, set TestOn
    ```bash
    python main_kf.py
    ```
-
-
-
 
 ## Traing Results
 
