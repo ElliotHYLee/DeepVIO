@@ -1,11 +1,12 @@
 ## Update Notes: 04.25.2024
 
-1. For simpler experience, code assumes KITTI odom. datasets only at the moment.
-2. Docker based environment is main for consistent experience.
+1. For simpler experience, the code assumes KITTI odom. datasets only at the moment.
+2. Docker based environment is considered to be main branch for consistent experience.
 3. The ground truth and psuedo-imu data is added.
 4. The actual image data need to be put in the folder.
-5. Weihts zip files are linked.
+5. Weihts zip file is linked.
 6. Lots of codes need to be organized and refactored further.
+7. For training, still reuquires big RAM capacity to read the data.
 
 # Deep Visual Inertial Odometry
 
