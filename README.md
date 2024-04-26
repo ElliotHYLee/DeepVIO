@@ -101,7 +101,7 @@ From left to right, velocity, position XYZ, position 2D. Red: ground truth, blue
 
 <img src="https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/src/Results/Figures/correction_screen_shot.png" width="400">
 
-**Note** As mentioned early, this project corrects the CNN output of the velocity using accelerometer's integration by Kalman filter. The positions are simple integrations on XYZ velocity. From 2nd graph's z axis, if lucky, the simple position integration may result in less drift.
+**Note** As mentioned earlier, this project corrects the CNN output of the velocity using accelerometer's integration by Kalman filter. The positions are simple integrations on XYZ velocity. From 2nd graph's z axis, if lucky, the simple position integration may result in less drift.
 
 To ultimately reduce the position, you will need to bring your own position measurement. i.e SLAM.
 
