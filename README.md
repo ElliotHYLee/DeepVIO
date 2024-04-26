@@ -63,19 +63,22 @@ Hongyun Lee, James W. Gregory, Matthew McCrink, and Alper Yilmaz. "Deep Learning
 
 
 ## Traing Results
-description
-
-<ul>
+Training result on KITTI odometry dataset on sequence 0 (Trained on seq: 0, 2, 4)
 <img src="https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/src/Results/Figures/docker_kitti_none0_results.png" width="400">
-</ul>
+
 
 ## Test Results
-<ul>
+Test result on KITTI odom. data: seq.5
 <img src="https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/src/Results/Figures/master_kitti_none5_results.png" width="400">
-</ul>
+
 
 ## Correction Result
-
-<ul>
+From left to right, velocity, position XYZ, position 2D.
 <img src="https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/src/Results/Figures/correction_screen_shot.png" width="400">
-</ul>
+
+**Note** As mentioned early, this project corrects the CNN output of the velocity using accelerometer's integration by Kalman filter. The positions are simple integrations on XYZ velocity. From 2nd graph's z axis, if lucky, the simple position integration may result in less drift.
+
+To ultimately reduce the position, you will need to bring your own position measurement. i.e SLAM.
+
+
+
