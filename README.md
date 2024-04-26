@@ -1,3 +1,12 @@
+## Update Notes: 04.25.2024
+
+1. For simpler experience, code assumes KITTI odom. datasets only at the moment.
+2. Docker based environment is main for consistent experience.
+3. The ground truth and psuedo-imu data is added.
+4. The actual image data need to be put in the folder.
+5. Weihts zip files are linked.
+6. Lots of codes need to be organized and refactored further.
+
 # Deep Visual Inertial Odometry
 
 Deep learning based visual-inertial odometry project.
@@ -104,6 +113,5 @@ From left to right, velocity, position XYZ, position 2D. Red: ground truth, blue
 **Note** As mentioned earlier, this project corrects the CNN output of the velocity using accelerometer's integration by Kalman filter. The positions are simple integrations on XYZ velocity. From 2nd graph's z axis, if lucky, the simple position integration may result in less drift.
 
 To ultimately reduce the position, you will need to bring your own position measurement. i.e SLAM.
-
 
 
