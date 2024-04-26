@@ -73,7 +73,7 @@ Test result on KITTI odom. data: seq.5
 
 
 ## Correction Result
-From left to right, velocity, position XYZ, position 2D.
+From left to right, velocity, position XYZ, position 2D. Red: ground truth, blue: CNN output, green: Kalman-Filter(CNN + Accelerometer)
 
 <img src="https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/src/Results/Figures/correction_screen_shot.png" width="400">
 
