@@ -56,7 +56,7 @@ Hongyun Lee, James W. Gregory, Matthew McCrink, and Alper Yilmaz. "Deep Learning
    
 1. Clone this repo.
     ```
-    git clone -- recursive https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry 
+    git clone https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry --recursive
     ```
 2. A folder structure for KITTI dataset is provided. Fill in the actual data (images) accordingly. Or, provide custom bind mount path. To investigate the folder structure, see ~/datasets/KITTI/odom/sequences/00/image_0/
 3. Build docker image
