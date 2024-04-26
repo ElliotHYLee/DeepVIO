@@ -63,12 +63,16 @@ Hongyun Lee, James W. Gregory, Matthew McCrink, and Alper Yilmaz. "Deep Learning
 
 
 ## Traing Results
+
 Training result on KITTI odometry dataset on sequence 0 (Trained on seq: 0, 2, 4)
+
 <img src="https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/src/Results/Figures/docker_kitti_none0_results.png" width="400">
 
 
 ## Test Results
+
 Test result on KITTI odom. data: seq.5
+
 <img src="https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/src/Results/Figures/master_kitti_none5_results.png" width="400">
 
 
