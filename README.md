@@ -48,7 +48,7 @@ Hongyun Lee, James W. Gregory, Matthew McCrink, and Alper Yilmaz. "Deep Learning
     ```
     git clone -- recursive https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry 
     ```
-2. A folder structure for KITTI dataset is provided. Fill in the actual data accordingly. Or, provide custom bind mount path.
+2. A folder structure for KITTI dataset is provided. Fill in the actual data (images) accordingly. Or, provide custom bind mount path. To investigate the folder structure, see ~/datasets/KITTI/odom/sequences/00/image_0/
 3. Build docker image
    ```
     docker compose build
@@ -66,13 +66,12 @@ Hongyun Lee, James W. Gregory, Matthew McCrink, and Alper Yilmaz. "Deep Learning
 description
 
 <ul>
-<img src="https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/master/Results/Figures/master_kitti_none0_results.png" width="400">
+<img src="https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/src/Results/Figures/docker_kitti_none0_results.png" width="400">
 </ul>
 
 ## Test Results
 <ul>
-<img src="https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/master/Results/Figures/master_kitti_none5_results.png" width="400">
-<img src="https://github.com/ElliotHYLee/VisualOdometry3D/blob/master/Results/Figures/master_airsim_mr2_results.png" width="400">
+<img src="https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/src/Results/Figures/master_kitti_none5_results.png" width="400">
 </ul>
 
 ## Correction Result
