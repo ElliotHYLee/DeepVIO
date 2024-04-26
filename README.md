@@ -74,6 +74,7 @@ Test result on KITTI odom. data: seq.5
 
 ## Correction Result
 From left to right, velocity, position XYZ, position 2D.
+
 <img src="https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/src/Results/Figures/correction_screen_shot.png" width="400">
 
 **Note** As mentioned early, this project corrects the CNN output of the velocity using accelerometer's integration by Kalman filter. The positions are simple integrations on XYZ velocity. From 2nd graph's z axis, if lucky, the simple position integration may result in less drift.
