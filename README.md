@@ -77,5 +77,5 @@ description
 ## Correction Result
 
 <ul>
-<img src="" width="400">
+<img src="https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/src/Results/Figures/correction_screen_shot.png" width="400">
 </ul>
