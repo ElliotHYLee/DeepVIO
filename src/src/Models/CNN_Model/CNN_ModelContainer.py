@@ -31,7 +31,7 @@ class CNN_ModelContainer(AbsModelContainer):
         self.dtr_gnd = dtr_gnd.to(self.device)
         self.rotM = rotM.to(self.device)
 
-        # self.pr, self.A, self.B = self.model(x, u)
+        # Note: bad name warning - variables with *_cov is the Cholesky factor of the covariance matrix. Not the covariance matrix itself.
         self.pr_du, self.pr_du_cov, \
         self.pr_dw, self.pr_dw_cov, \
         self.pr_dtr, self.pr_dtr_cov, \

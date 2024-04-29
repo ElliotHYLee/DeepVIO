@@ -18,21 +18,27 @@ class KFBlock():
         np.set_printoptions(precision=16)
         print(self.R)
 
-    def runKF(self, dt, prSig, mSig, mCov):
-        N = prSig.shape[0]
+    def runKF(self, dt, acc_gnd, dtr_gnd, dtr_covm_gnd):
+        N = acc_gnd.shape[0]
         result = np.zeros((N,3))
         sysCov = np.zeros((N,3,3))
         for i in range(1, N):
             # prediction
-            prX = result[i-1,:] + prSig[i]*dt[i]
+            prX = result[i-1,:] + acc_gnd[i]*dt[i]**2 # why dt[i]**2? The frame 2 frame egomition is displacement in meters.
+            # The displacement is a change of position. Not position, not velocity. dx/dt = vel, dispalcement = dx = vel*dt
             prCov = sysCov[i-1,:] + self.R
 
             # K gain
-            K = np.linalg.inv(prCov + mCov[i])
+            K = np.linalg.inv(prCov + dtr_covm_gnd[i])
             K = np.matmul(prCov, K)
-            innov = mSig[i] - prX
+            innov = dtr_gnd[i] - prX
 
             # correction
+            # print("prX", prX.shape)
+            # print("K", K.shape)
+            # print("innov", innov.shape)
+            # print("corr", np.matmul(K, innov).shape)
+            # asdf
             corrX = prX + np.matmul(K, innov)
             corrCov = prCov - np.matmul(K, prCov)
 
@@ -40,6 +46,8 @@ class KFBlock():
             sysCov[i] = corrCov
 
         return result
+    
+    
 
 
 def standardize(data):

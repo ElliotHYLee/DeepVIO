@@ -91,7 +91,6 @@ You'd still need to run the model. See Step 8 in the "Training and Testing Usage
 7. Training & Testing
 Make sure to turn on/off the training @ main_cnn.py. To run training, set TestOnly=False. Default is true. This will trian and generate weights if you don't have one.
 
-   
    ```bash
    # main_cnn.py
    runTrainTest('kitti', 'none', seq=[0, 2, 4], seqRange=[0, 11], TestOnly=False) 
@@ -99,6 +98,10 @@ Make sure to turn on/off the training @ main_cnn.py. To run training, set TestOn
 
    ```bash
    python main_cnn.py
+   ```
+
+   ```bash
+   python main_realtime.py
    ```
 
 8. Testing CNN-KF output   

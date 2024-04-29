@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from src.Params import getNoiseLevel
 from src.DataReader.CNN_Data.ReadData_CNN import ReadData
+
 class ReadData_KF(ReadData):
     def __init__(self, dsName='airsim', subType='mr', seq=0):
         super().__init__(dsName, subType, seq)
@@ -34,8 +35,6 @@ class ReadData_KF(ReadData):
         self.pr_dtr_std_gnd = np.zeros((self.numData, 3))
         for i in range(0, self.numData):
             self.pr_dtr_std_gnd[i,:] = np.sqrt(np.diag(self.pr_dtr_cov_gnd[i,:]))
-
-
 
 if __name__ == '__main__':
     d = ReadData_KF(dsName='airsim', subType='mr', seq=0)

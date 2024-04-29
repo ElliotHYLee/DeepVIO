@@ -9,7 +9,6 @@ from src.Params import getNoiseLevel
 
 dsName, subType, seq = 'kitti', 'none', [0, 2, 7, 10]
 
-isTrain = False
 wName = 'Weights/' + branchName() + '_' + dsName + '_' + subType + '_KF'
 
 def preClamp(data):
@@ -83,33 +82,33 @@ def prepData(seqLocal = seq):
     dm.initHelper(dsName, subType, seqLocal)
     dt = dm.dt
 
-    pSignal = dm.accdt_gnd
-    pSignal = preClamp(pSignal)
+    acc_gnd = dm.acc_gnd #dm.accdt_gnd
+    acc_gnd = preClamp(acc_gnd)
 
-    mSignal = dm.pr_dtr_gnd
-    mSignal = preClamp((mSignal))
+    dtr_gnd = dm.pr_dtr_gnd
+    dtr_gnd = preClamp((dtr_gnd))
 
-    mCov = dm.dtr_cov_gnd
+    dtr_covm_gnd = dm.dtr_cov_gnd
 
-    gtSignal = preClamp(dm.gt_dtr_gnd)
-    gtSignal = filtfilt(gtSignal)
-    return gtSignal, dt, pSignal, mSignal, mCov
+    gt_dtr_gnd = preClamp(dm.gt_dtr_gnd)
+    gt_dtr_gnd = filtfilt(gt_dtr_gnd)
+    return gt_dtr_gnd, dt, acc_gnd, dtr_gnd, dtr_covm_gnd
 
-def main():
+def main(isTrain=False):
     kfNumpy = KFBlock()
-    gtSignal, dt, pSignal, mSignal, mCov = prepData(seqLocal=seq)
-    posGT = np.cumsum(gtSignal, axis=0)
+    gt_dtr_gnd, dt, acc_gnd, dtr_gnd, dtr_covm_gnd = prepData(seqLocal=seq)
+    posGT = np.cumsum(gt_dtr_gnd, axis=0)
     gnet = GuessNet()
 
     if not isTrain:
-        gnet.train()
+        #gnet.train()
         checkPoint = torch.load(wName + '.pt')
         gnet.load_state_dict(checkPoint['model_state_dict'])
         gnet.load_state_dict(checkPoint['optimizer_state_dict'])
     else:
         gnet.eval()
 
-    kf = TorchKFBLock(gtSignal, dt, pSignal, mSignal, mCov)
+    kf = TorchKFBLock(gt_dtr_gnd, dt, acc_gnd, dtr_gnd, dtr_covm_gnd)
     rmser = GetRMSE()
     optimizer = optim.RMSprop(gnet.parameters(), lr=10 ** -4)
 
@@ -121,8 +120,8 @@ def main():
     iterN = 50 if isTrain else 1
     for epoch in range(0, iterN):
         guess, sign = gnet()
-        filt = kf(guess, sign)
-        velRMSE, posRMSE = rmser(filt, gtSignal)
+        filt = kf.forward(guess, sign)
+        velRMSE, posRMSE = rmser(filt, gt_dtr_gnd)
         params = guess.data.numpy()
         paramsSign = sign.data.numpy()
         loss = posRMSE.data.numpy() + velRMSE.data.numpy()
@@ -165,14 +164,14 @@ def main():
 
     if isTrain:
         kfRes = filt.data.numpy()
-        _, _ = plotter(kfRes, gtSignal)
+        # _, _ = plotter(kfRes, gt_dtr_gnd)
     else:
         noise = getNoiseLevel()
         for ii in range(5, 6):
-            gtSignal, dt, pSignal, mSignal, mCov = prepData(seqLocal=[ii])
+            gt_dtr_gnd, dt, acc_gnd, dtr_gnd, dtr_covm_gnd = prepData(seqLocal=[ii])
             kfNumpy.setR(params, paramsSign)
-            kfRes = kfNumpy.runKF(dt, pSignal, mSignal, mCov)
-            posFilt, posGT = plotter(kfRes, gtSignal, mSignal)
+            kfRes = kfNumpy.runKF(dt, acc_gnd, dtr_gnd, dtr_covm_gnd)
+            posFilt, posGT = plotter(kfRes, gt_dtr_gnd, dtr_gnd)
             np.savetxt('Results/Data/posFilt' + str(ii) + '_' + str(noise) + '.txt', posFilt)
             np.savetxt('Results/Data/posGT' + str(ii) + '_' + str(noise) +  '.txt', posGT)
 
@@ -180,6 +179,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    #main(isTrain=True)
+    main(isTrain=False)
 
 

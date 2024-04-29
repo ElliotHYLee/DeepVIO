@@ -30,7 +30,7 @@ for i =1:1:N
     % change euler axis to my aae
     R_bdy2gnd{i} = T{i}(1:3,1:3);
     euler(i,:) = rotm2eul(R_bdy2gnd{i});
-    noise = 0;
+    noise = 1;
     euler(i,:) = euler(i,:).*(1 + rand(1,3)*noise/100);
     RRR = eul2rotm(euler(i,:), 'zyx');
     

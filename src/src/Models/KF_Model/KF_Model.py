@@ -47,7 +47,8 @@ class TorchKFBLock(nn.Module):
         sysCov = torch.zeros(N,3,3)
         for i in range(1, N):
             # prediction
-            prX = state[i-1,:] + self.prSig[i]*self.dt[i]
+            prX = state[i-1,:] + self.prSig[i]*self.dt[i]**2 # why dt[i]**2? The frame 2 frame egomition is displacement in meters.
+            # The displacement is a change of position. Not position, not velocity. dx/dt = vel, dispalcement = dx = vel*dt
             prCov = sysCov[i-1,:] + R
 
             # K gain
