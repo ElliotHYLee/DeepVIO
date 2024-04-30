@@ -78,7 +78,6 @@ def test(dsName, subType, seq):
     the_test_data = dm.testSet
     the_model = mc.model
     dataLoader = DataLoader(the_test_data, batch_size=1, shuffle=False) # 1 data point at a time for a real-time setup
-     
 
     # Guess Net
     gnet = GuessNet()
@@ -113,13 +112,14 @@ def test(dsName, subType, seq):
         ##==================================================================================================
         img0, img1, dw_gyro, dw_gyro_stand, rotM = get_input_data(dataInTuple)
 
-        # Note: bad name warning -
+        # Note: bad name warning
         # The variables with *_cov is the Cholesky factor of the covariance matrix. Not the covariance matrix itself.
         pr_du, pr_du_cov, \
         pr_dw, pr_dw_cov, \
         pr_dtr, pr_dtr_cov, \
         pr_dtr_gnd  = the_model(img0, img1, dw_gyro, dw_gyro_stand, rotM)
         ##==================================================================================================
+        
         # prep data for KF back in CPU
         cpu_img0 = reshapeImage(img0.cpu().data.numpy()) # 360x720x3
         cpu_img1 = reshapeImage(img1.cpu().data.numpy()) # 360x720x3
