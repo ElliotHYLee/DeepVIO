@@ -23,7 +23,7 @@ cons:
 
 
 ## Please Cite:
-Hongyun Lee, James W. Gregory, Matthew McCrink, and Alper Yilmaz. "Deep Learning for Visual-Inertial Odometry: Estimation of Monocular Camera Ego-Motion and its Uncertainty" The Ohio State University, Master Thesis, https://etd.ohiolink.edu/pg_10?0::NO:10:P10_ACCESSION_NUM:osu156331321922759
+Hongyun Lee, James W. Gregory, Matthew McCrink, and Alper Yilmaz. "Deep Learning for Visual-Inertial Odometry: Estimation of Monocular Camera Ego-Motion and its Uncertainty" The Ohio State University, Master Thesis, http://rave.ohiolink.edu/etdc/view?acc_num=osu156331321922759
 
 
 ## Tested System
