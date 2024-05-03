@@ -13,8 +13,8 @@
 Deep learning based visual-inertial odometry project.
 
 Youtube Overview: 
+[![Youtube](https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/yt.png)](https://youtu.be/T8hH6Q6KIrc?si=aMZP8SQk5q0PdzRC)
 
-https://youtu.be/T8hH6Q6KIrc?si=aMZP8SQk5q0PdzRC
 
 pros:
 - Lighter CNN structure. No RNNs -> much lighter.
