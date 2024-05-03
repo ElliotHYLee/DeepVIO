@@ -13,7 +13,11 @@
 Deep learning based visual-inertial odometry project.
 
 Youtube Overview: 
-[![Youtube](https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/yt.png)](https://youtu.be/T8hH6Q6KIrc?si=aMZP8SQk5q0PdzRC)
+<a href="https://youtu.be/T8hH6Q6KIrc?si=aMZP8SQk5q0PdzRC" target="_blank">
+  <img src="(https://github.com/ElliotHYLee/Deep_Visual_Inertial_Odometry/blob/docker/yt.png" alt="Alt Text">
+</a>
+
+
 
 
 pros:
